@@ -83,6 +83,12 @@ The Pulse is quickening.
 - `README.md` — you are here
 
 ---
+Short film about NeuroCity : Episode 1: The Fall of NeuroCity .
+Watch on Youtube:
+https://www.youtube.com/watch?v=rZBHY5Sf2ZQ
+SHA-256 (film file):
+1747d0658c8938ac8f8797bd20062b90769c65b758129352e221db5f993355ba  New_real_and_slider_7_and_all_video_plus_mp3_9_max.mp4
+---
 ## Official Links
 - 🎬 YouTube Channel — https://youtube.com/@Infinity-Cyberpunk
 - 💾 GitHub Pages — [https://infinity-cyberpunk.github.io/thesliders/]
