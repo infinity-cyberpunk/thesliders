@@ -85,7 +85,7 @@ The Pulse is quickening.
 ---
 ## Official Links
 - 🎬 YouTube Channel — https://youtube.com/@Infinity-Cyberpunk
-- 💾 GitHub Pages — https://thesliders.github.io
+- 💾 GitHub Pages — [https://infinity-cyberpunk.github.io/thesliders/]
 - 🎥 IMDb — (link pending)
 - 🌐 Fandom Wiki — https://fandom.com/infinitycyberpunk
 - 🛰️ Twitter — https://twitter.com/InfinityCybernet
