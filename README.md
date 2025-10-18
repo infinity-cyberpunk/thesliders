@@ -81,7 +81,7 @@ The Pulse is quickening.
 
 - `locations/` — NeuroCity world map and zone data
 - `README.md` — you are here
-
+-  <a href="license.txt" class="neon-link">License</a>
 ---
 Short film about NeuroCity : Episode 1: The Fall of NeuroCity .
 Watch on Youtube:
