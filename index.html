@@ -1,0 +1,237 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="neurocity" content="Infinity Cyberpunk: NeuroCity">
+    <title>Infinity Cyberpunk: NeuroCity</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            overflow-x: hidden;
+            text-shadow: 0 0 5px #0f0;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .intro {
+            opacity: 1;
+            transition: opacity 1s;
+        }
+        .content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 1s, max-height 1s;
+        }
+        .content.visible {
+            opacity: 1;
+            max-height: 5000px;
+        }
+        .connect-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: none;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            font-size: 1.5em;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px #0f0;
+        }
+        .connect-btn:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 20px #0f0;
+        }
+        a {
+            color: #0f0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="container">
+        <div class="intro">
+            <h1>🧬 Infinity Cyberpunk: NeuroCity</h1>
+            <p><em>"You’re looking into the Network. And then you realize: it’s looking into you."</em></p>
+            <p><strong>You don’t load into the world.<br>The world loads into you.</strong></p>
+            <p><strong>You’ve found this project — because it was meant to be.</strong></p>
+        </div>
+        <button class="connect-btn" onclick="revealContent()">Connect</button>
+        <div class="content" id="content">
+            <h2>🛰️ ANNOUNCEMENT</h2>
+            <p><strong>INFINITY CYBERPUNK: NEUROCITY</strong></p>
+            <p><strong>In 2099, reality became an interface.</strong><br>
+            We’re not creating a game. We’re opening a portal.</p>
+            <p>A world where there is no truth — only layers of perception.<br>
+            Where virtuality fused with flesh, and mind — with the Network.<br>
+            Where everything you know about yourself may be a lie, coded into you by protocols.</p>
+            <p><strong>There are no heroes here. Only those brave enough to search.</strong></p>
+            <p><strong>Welcome to NeuroCity.</strong><br>
+            You won’t find a way out.<br>
+            Because you’re already inside.</p>
+
+            <h2>🧠 PRESENTATION</h2>
+            <p><strong>NEUROCITY is not the world of the future. It’s its echo.</strong></p>
+            <p>Everything left of civilization has long dissolved into the Network.<br>
+            Laws were replaced by protocols.<br>
+            Emotions — by signals.<br>
+            Freedom — by illusion.</p>
+            <p>You enter as a user.<br>
+            But the deeper you go,<br>
+            the thinner the line becomes between you and the code.</p>
+            <p>What hides in the depths of the neurostreams?<br>
+            Who left clues in the ruins of old protocols?<br>
+            Why do some players see what others cannot?</p>
+            <p><strong>Code is the digital fabric of the Network.</strong><br>
+            Those who decipher it won’t just break through defenses —<br>
+            they’ll <strong>rewrite virtuality itself — and perhaps, reality.</strong></p>
+            <p><strong>Are you ready to stop being human?<br>
+            To become the Network?</strong></p>
+
+            <h2>🕶️ CALLING CARD</h2>
+            <p><strong>Who are we?</strong><br>
+            No one knows who we are, or how many of us there are.<br>
+            Thinking like the Network, moving to its rhythm,<br>
+            we breathe in sync with its pulse.<br>
+            We don’t live in the Network.<br>
+            <strong>We are the Network.</strong></p>
+            <p><strong>What are we creating?</strong><br>
+            It’s not a game.<br>
+            It’s a living, growing world hidden behind the interface.<br>
+            You may enter as a player.<br>
+            <strong>But stay long enough — and you become part of it.</strong></p>
+            <p><strong>Where does it begin?</strong><br>
+            No one knows.<br>
+            But some already hear the Pulse.</p>
+            <p><strong>When?</strong><br>
+            The Pulse is quickening.<br>
+            <strong>Follow the signal.</strong></p>
+
+            <h2>🔧 Project Structure (partial)</h2>
+            <ul>
+                <li><code>locations/</code> — NeuroCity world map and zone data</li>
+                <li><code>README.md</code> — you are here</li>
+            </ul>
+			<div class="section">
+			  <h2>Explore the Universe</h2>
+			  <p>Step deeper into the <strong>Infinity Cyberpunk Universe</strong> — uncover factions, heroes, and the origins of <strong>NeuroCity</strong>.</p>
+			  <a href="universe.html" class="neon-link">Enter the Archive</a>
+
+			  <h3>External Links</h3>
+			  <ul class="external-links">
+				<li><a href="#" target=https://youtube.com/@Infinity-Cyberpunk"_blank">YouTube</a></li>
+				<li><a href="#" target="_blank">Twitter / X</a></li>
+				<li><a href="#" target="_blank">IMDb</a></li>
+				<li><a href="#" target="_blank">Fandom Wiki</a></li>
+				<li><a href="#" target="_blank">modd.io</a></li>
+			  </ul>
+			</div>
+
+
+        </div>
+        <p><em><strong>NeuroCity is not a world. It’s a mirror.</strong><br>
+        Look deeper. And remember: you’re already inside.</em></p>
+    </div>
+
+    <script>
+        // Matrix digital rain
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+
+        // Reveal content
+        function revealContent() {
+            const content = document.getElementById('content');
+            content.classList.toggle('visible');
+            const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_9d7235e5f3.mp3?filename=click-21156.mp3');
+            audio.play(); 
+        }
+    </script>
+</body>
+</html>

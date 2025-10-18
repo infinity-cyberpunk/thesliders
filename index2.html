@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroCity :: Infinity Cyberpunk Universe</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ffe0;
+      font-family: "Courier New", monospace;
+      overflow: hidden;
+    }
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      letter-spacing: 2px;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7, 0 0 30px #0080ff;
+    }
+    button {
+      background: none;
+      border: 1px solid #00fff7;
+      color: #00fff7;
+      padding: 10px 25px;
+      font-size: 1em;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #00fff7;
+      color: #000;
+      box-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+    }
+    .hidden {
+      display: none;
+    }
+    .inner-block {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #00fff7;
+      padding: 30px;
+      text-align: left;
+      color: #b0f0ff;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .inner-block h2 {
+      color: #00fff7;
+      text-transform: uppercase;
+      margin-top: 0;
+    }
+    .neon-link {
+      color: #00fff7;
+      text-decoration: none;
+      border-bottom: 1px dotted #00fff7;
+    }
+    .neon-link:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #00fff7;
+    }
+    .external-links {
+      list-style: none;
+      padding-left: 0;
+    }
+    .external-links li {
+      margin: 5px 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    footer {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      color: #004d4d;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="center" id="intro">
+    <h1>NeuroCity // Infinity Cyberpunk Universe</h1>
+    <button onclick="connect()">Connect</button>
+  </div>
+
+  <div class="inner-block hidden" id="inner">
+    <h2>Access Granted</h2>
+    <p>Welcome back. The City never sleeps. The Network awaits your return.</p>
+    <p>The pulse of <strong>NeuroCity</strong> echoes through the digital veins of the world. 
+       You stand on the threshold of endless realities, each more vivid than the last.</p>
+
+    <div class="section">
+      <h2>Explore the Universe</h2>
+      <p>Step deeper into the <strong>Infinity Cyberpunk Universe</strong> — uncover factions, heroes, and the origins of <strong>NeuroCity</strong>.</p>
+      <a href="universe.html" class="neon-link">Enter the Archive</a>
+
+      <h3>External Links</h3>
+      <ul class="external-links">
+        <li><a href="#" target="_blank">YouTube</a></li>
+        <li><a href="#" target="_blank">Twitter / X</a></li>
+        <li><a href="#" target="_blank">IMDb</a></li>
+        <li><a href="#" target="_blank">Fandom Wiki</a></li>
+        <li><a href="#" target="_blank">modd.io</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    you're already inside.
+  </footer>
+
+  <script>
+    function connect() {
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("inner").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
